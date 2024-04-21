@@ -176,7 +176,6 @@
                     </div>
                     <div class="form--buttons">
                         <button type="button">Return</button>
-                        <button type="button">Search</button>
                     </div>
                 </form>
             </div>
