@@ -55,8 +55,10 @@
             <button id ="booksBtn">Books</button>
             <button id ="studentsBtn">Students</button>
           </div>
+          <div class="table">
           <table id = "booksTable"></table>
           <table id = "studentsTable"></table>
+          </div>
         </div>
       </div>
     </div>
