@@ -19,43 +19,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (!empty($_POST['stuID']) && !empty(
     $issueDate = date('Y-m-d', strtotime($issueDate));
     $dueDate = date('Y-m-d', strtotime($dueDate));
 
-    // Check if there is a non-null returnDate for the current bookID
-    $checkQuery = "SELECT issueReturn FROM issuebook WHERE bookID = '$bookID' LIMIT 1";
+    // Check if the book has been issued before and not returned
+    $checkQuery = "SELECT * FROM issuebook WHERE bookID = '$bookID' AND stuID = '$stuID' AND issueReturn IS NULL";
     $result = mysqli_query($con, $checkQuery);
 
     if (mysqli_num_rows($result) > 0) {
-        // Fetching the issueReturn value
-        $row = mysqli_fetch_assoc($result);
-        $issueReturn = $row['issueReturn'];
+        // Check if the latest issueReturn is less than the latest issueDate
+        $latestIssueDateQuery = "SELECT issueDate FROM issuebook WHERE bookID = '$bookID' AND stuID = '$stuID' ORDER BY issueDate DESC LIMIT 1";
+        $latestIssueDateResult = mysqli_query($con, $latestIssueDateQuery);
+        $latestIssueReturnQuery = "SELECT issueReturn FROM issuebook WHERE bookID = '$bookID' AND stuID = '$stuID' ORDER BY issueDate DESC LIMIT 1";
+        $latestIssueReturnResult = mysqli_query($con, $latestIssueReturnQuery);
 
-        if ($issueReturn !== null) {
-            // If issueReturn is not null, display error
-            echo "Error: This book is not available to be issued.";
-        } else {
-            // Check if bookID from issue--form is present in attribute issuebook and attribute bookID in books table
-            $bookCheckQuery = "SELECT * FROM issuebook WHERE bookID = '$bookID'";
-            $bookCheckResult = mysqli_query($con, $bookCheckQuery);
+        if ($latestIssueDateResult && $latestIssueReturnResult) {
+            $latestIssueDate = mysqli_fetch_assoc($latestIssueDateResult)['issueDate'];
+            $latestIssueReturn = mysqli_fetch_assoc($latestIssueReturnResult)['issueReturn'];
 
-            if (mysqli_num_rows($bookCheckResult) > 0) {
-                // If bookID exists in issuebook table
-                // Display error: book cannot be issued
-                echo "Error: This book cannot be issued.";
-            } else {
-                // If bookID does not exist in issuebook table
-                // Proceed with insertion
-                $query = "INSERT INTO issuebook (stuID, bookID, issueDate, dueDate) VALUES ('$stuID', '$bookID', '$issueDate', '$dueDate')";
-                if (mysqli_query($con, $query)) {
-                    echo "Data added successfully";
+            if ($latestIssueReturn < $latestIssueDate) {
+                // Book can be issued, insert a new record
+                $insertQuery = "INSERT INTO issuebook (stuID, bookID, issueDate, dueDate) VALUES ('$stuID', '$bookID', '$issueDate', '$dueDate')";
+                if (mysqli_query($con, $insertQuery)) {
+                    echo "Book issued successfully";
                 } else {
                     echo "Error: " . mysqli_error($con);
                 }
+            } else {
+                // Error: Latest issueReturn is not less than latest issueDate
+                echo "Error: Latest issueReturn is not less than latest issueDate";
             }
+        } else {
+            // Error fetching latest issueDate or issueReturn
+            echo "Error fetching latest issueDate or issueReturn";
         }
     } else {
-        // If issueReturn is null, proceed with insertion
-        $query = "INSERT INTO issuebook (stuID, bookID, issueDate, dueDate) VALUES ('$stuID', '$bookID', '$issueDate', '$dueDate')";
-        if (mysqli_query($con, $query)) {
-            echo "Data added successfully";
+        // Book has not been issued before or has been returned, insert a new record
+        $insertQuery = "INSERT INTO issuebook (stuID, bookID, issueDate, dueDate) VALUES ('$stuID', '$bookID', '$issueDate', '$dueDate')";
+        if (mysqli_query($con, $insertQuery)) {
+            echo "Book issued successfully";
         } else {
             echo "Error: " . mysqli_error($con);
         }
