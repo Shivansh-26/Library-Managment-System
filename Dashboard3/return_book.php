@@ -64,14 +64,14 @@ if (isset($_POST['stuID']) && isset($_POST['bookID']) && isset($_POST['returnDat
             mysqli_query($con, $updateQuery);
 
             // Display message in popup form
-            echo "<script>alert('Book returned successfully. Fine: Rs. $fine');</script>";
+            echo "Book returned successfully. Fine: Rs. $fine";
         } elseif ($issueReturn === null && $returnDate <= $dueDate) {
             // Update issueReturn in issuebook table
             $updateQuery = "UPDATE issuebook SET issueReturn = '$returnDate' WHERE stuID = '$stuID' AND bookID = '$bookID'";
             mysqli_query($con, $updateQuery);
 
             // Display message in popup form
-            echo "<script>alert('Book returned successfully. No fine.');</script>";
+            echo "Book returned successfully. No fine.";
         }
     } else {
         echo "Due date not found.";
