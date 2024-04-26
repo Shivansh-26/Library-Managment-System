@@ -7,6 +7,7 @@
 4. [Software & Hardware Requirement Specifications](#software--hardware-requirement-specifications)
 5. [Implementation](#implementation)
 6. [Future Scope](#future-scope)
+7. [Screen Shots](#screen-shots)
 
 ---
 
@@ -98,6 +99,7 @@ The implementation of the library management system involved several stages, inc
    - Once the frontend and backend components were developed, integration testing was performed to ensure seamless communication between the two.
    - Testing involved validating user inputs, verifying data integrity, and conducting end-to-end tests to identify and address any bugs or issues.
 
+
 ## 6. Future Scope <a name="future-scope"></a>
 
 1. **Student Integration**: Incorporate features tailored to students' needs, such as user profiles and collaborative tools.
@@ -108,4 +110,35 @@ The implementation of the library management system involved several stages, inc
 6. **Data Analytics**: Utilize data analytics for insights into library usage patterns and user behavior.
 7. **Continuous Improvement**: Adopt an iterative approach, gathering user feedback for ongoing enhancements.
 
+## 7. Screenshots <a name ="screen-shots"></a>
+
+1. **Admin Login Page**
+   ![Admin Login](screenshots/admin_login.png)
+   
+2. **Admin SignIn Page**
+   ![Admin SignIn](screenshots/admin_signin.png)
+   
+3. **Dashboard**
+   ![Dashboard](screenshots/dashboard.png)
+   
+4. **Add Book**
+   ![Add Book](screenshots/add_book.png)
+
+5. **Add Student**
+   ![Add Student](screenshots/add_student.png)
+
+6. **Profile**
+    ![Profile](screenshots/profile.png)
+
+7. **View Book**
+   ![View Book](screenshots/view_book.png)
+
+8. **View Student**
+   ![View Student](screenshots/view_student.png)
+
+9. **Issue Book**
+   ![Issue Book](screenshots/issue_book.png)
+
+10. **Return Book**
+   ![Return Book](screenshots/return_book.png)
 ---
