@@ -7,7 +7,8 @@
 4. [Software & Hardware Requirement Specifications](#software--hardware-requirement-specifications)
 5. [Implementation](#implementation)
 6. [Future Scope](#future-scope)
-7. [Screen Shots](#screen-shots)
+7. [System Architecture](#architecture)
+8. [Screen Shots](#screen-shots)
 
 ---
 
@@ -110,7 +111,10 @@ The implementation of the library management system involved several stages, inc
 6. **Data Analytics**: Utilize data analytics for insights into library usage patterns and user behavior.
 7. **Continuous Improvement**: Adopt an iterative approach, gathering user feedback for ongoing enhancements.
 
-## 7. Screenshots <a name ="screen-shots"></a>
+## 7. System Architecture <a name = "architecture"></a>
+  ![System Architectuere](screenshots/architecture.jpg)
+  
+## 8. Screenshots <a name ="screen-shots"></a>
 
 1. **Admin Login Page**
    ![Admin Login](screenshots/admin_login.png)
