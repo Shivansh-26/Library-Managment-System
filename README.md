@@ -3,12 +3,12 @@
 # Project Contributors
 
 ## Front-end Development:
-Shivansh Prakash
-Yashwant Kawale
+- Shivansh Prakash
+- Yashwant Kawale
 
 ## Back-end Development:
-Shirish Goyal
-Nikhil Rathod
+- Shirish Goyal
+- Nikhil Rathod
 
 ## Table of Contents
 1. [Introduction](#introduction)
